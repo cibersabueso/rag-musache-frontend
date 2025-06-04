@@ -288,10 +288,6 @@ console.log('API:', window.api);
 4. Push rama (`git push origin feature/nueva-funcionalidad`)
 5. Crear Pull Request
 
-## 📄 Licencia
-
-MIT License - ver archivo LICENSE para detalles.
-
 ## 🎯 Roadmap
 
 ### Próximas Funcionalidades
