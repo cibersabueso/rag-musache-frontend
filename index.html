@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Musache - Sistema Inteligente</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>RAG Musache</h1>
+                </div>
+                <div class="status-indicator" id="statusIndicator">
+                    <div class="status-dot"></div>
+                    <span id="statusText">Conectando...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Welcome Section -->
+            <section class="welcome-section" id="welcomeSection">
+                <div class="welcome-card glass-card">
+                    <div class="welcome-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2>Sistema RAG Inteligente</h2>
+                    <p>Sube un documento y chatea con él usando inteligencia artificial</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-upload"></i>
+                            <span>Sube documentos PDF/TXT</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-comments"></i>
+                            <span>Chatea con IA</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-search"></i>
+                            <span>Búsqueda semántica</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-card glass-card">
+                    <h3><i class="fas fa-cloud-upload-alt"></i> Subir Documento</h3>
+                    
+                    <!-- Drop Zone -->
+                    <div class="drop-zone" id="dropZone">
+                        <div class="drop-zone-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Arrastra tu archivo aquí</h4>
+                            <p>o <button class="browse-btn" id="browseBtn">selecciona un archivo</button></p>
+                            <small>Formatos soportados: PDF, TXT (máx. 10MB)</small>
+                        </div>
+                        <input type="file" id="fileInput" accept=".pdf,.txt" hidden>
+                    </div>
+
+                    <!-- Upload Progress -->
+                    <div class="upload-progress hidden" id="uploadProgress">
+                        <div class="progress-info">
+                            <span id="fileName"></span>
+                            <span id="fileSize"></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-status" id="progressStatus">Subiendo...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section class="chat-section hidden" id="chatSection">
+                <div class="chat-card glass-card">
+                    <div class="chat-header">
+                        <h3><i class="fas fa-comments"></i> Chat con tu documento</h3>
+                        <div class="chat-info">
+                            <span id="documentName"></span>
+                            <span id="chunksCount"></span>
+                        </div>
+                    </div>
+
+                    <!-- Messages Container -->
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="message system-message">
+                            <div class="message-content">
+                                <i class="fas fa-robot"></i>
+                                <p>¡Hola! Tu documento ha sido procesado. Puedes hacerme cualquier pregunta sobre su contenido.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input-container">
+                        <div class="chat-input">
+                            <input 
+                                type="text" 
+                                id="messageInput" 
+                                placeholder="Escribe tu pregunta sobre el documento..."
+                                maxlength="500"
+                            >
+                            <button id="sendButton" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button class="suggestion-btn" data-suggestion="¿De qué trata el documento?">
+                                ¿De qué trata el documento?
+                            </button>
+                            <button class="suggestion-btn" data-suggestion="¿Cuáles son los puntos principales?">
+                                ¿Cuáles son los puntos principales?
+                            </button>
+                            <button class="suggestion-btn" data-suggestion="Resúmeme el contenido">
+                                Resúmeme el contenido
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section hidden" id="historySection">
+                <div class="history-card glass-card">
+                    <h3><i class="fas fa-history"></i> Historial de conversaciones</h3>
+                    <div class="history-container" id="historyContainer">
+                        <!-- History items will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RAG Musache - Sistema desarrollado para el desafío técnico de Musache</p>
+            <div class="footer-links">
+                <a href="https://rag-musache.onrender.com/docs" target="_blank">
+                    <i class="fas fa-code"></i> API Docs
+                </a>
+                <a href="https://github.com/cibersabueso/rag-musache" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingText">Procesando...</p>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
