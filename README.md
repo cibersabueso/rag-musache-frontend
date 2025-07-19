@@ -313,6 +313,3 @@ console.log('API:', window.api);
 
 Tu frontend RAG Musache está completo y listo para desplegarse. Con diseño moderno, experiencia fluida y integración perfecta con tu API backend.
 
-**¿Necesitas ayuda?** Abre un issue en el repositorio.
-
-**Demo:** [Ver demo en vivo](https://tu-usuario.github.io/rag-musache-frontend/)
